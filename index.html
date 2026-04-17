@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mc梦想天域 - 小破服大世界 | Minecraft 服务器官网</title>
+    <meta name="description" content="Mc梦想天域是一个长期稳定运营的 Minecraft 服务器，提供服务器地址、实时状态、客户端下载、建筑展示与玩家社区入口。">
+    <meta name="keywords" content="Mc梦想天域,Minecraft服务器,我的世界服务器,MC服务器,play.mcdtc.com">
+    <link rel="canonical" href="https://www.mcdtc.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mc梦想天域 - 小破服大世界">
+    <meta property="og:description" content="长期稳定运营的 Minecraft 服务器，支持查看实时状态、客户端下载、建筑展示与交流群入口。">
+    <meta property="og:url" content="https://www.mcdtc.com/">
+    <meta property="og:image" content="https://www.mcdtc.com/assets/images/site/optimized-webp/mcdtc-gallery-6.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#1b1b2a">
+    <link rel="icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.mcstatus.io" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i%7CPoppins:300,400,500,600,700" rel="stylesheet">
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom-style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mc梦想天域",
+      "url": "https://www.mcdtc.com/",
+      "description": "长期稳定运营的 Minecraft 服务器官网"
+    }
+    </script>
+</head>
+<body data-spy="scroll" data-target=".main-menu" data-offset="70">
+    <div class="preloader">
+        <div class="loader">
+            <div class="ld-child"></div>
+            <div class="ld-child ld-child2"></div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="main-menu menu-fixed">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand site-brand page-scroll" href="#banner">Mc梦想天域</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" href="#banner">首页</a></li>
+                        <li><a class="page-scroll" href="#highlights">特色</a></li>
+                        <li><a class="page-scroll" href="#portfolio">展示</a></li>
+                        <li><a class="page-scroll" href="#faq">新手必看</a></li>
+                        <li><a class="page-scroll" href="#team">成员</a></li>
+                        <li><a class="page-scroll" href="#contact">加入我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="banner" class="banner hero-banner" style="background-image:url('assets/images/site/optimized-webp/mcdtc-gallery-6.webp'); background-size:cover; background-position:center;">
+        <div class="overlay">
+            <div class="container banner-content hero-grid">
+                <div class="hero-copy">
+                    <p class="hero-eyebrow">Minecraft 长期运营社区服务器</p>
+                    <h1>Mc梦想天域</h1>
+                    <p class="hero-subtitle">一个长期运营的 Minecraft 社区服务器。想养老、想建筑，或者只是想找个还有活人、还能慢慢玩的地方，都欢迎来看看。</p>
+                    <div class="hero-quick-info">
+                        <span><i class="fa fa-globe"></i> 地址：<strong>play.mcdtc.com</strong></span>
+                        <span><i class="fa fa-tag"></i> 推荐版本：<strong>26.1</strong></span>
+                        <span><i class="fa fa-users"></i> 在线：<strong id="heroOnlinePlayers">加载中...</strong></span>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="default-button" onclick="copyIp()"><i class="fa fa-copy"></i> 复制服务器地址</button>
+                        <a href="https://alist.mcdtc.com/" class="default-button ghost-button" target="_blank" rel="noopener">下载客户端</a>
+                    </div>
+                </div>
+                <div class="hero-status-panel">
+                    <div class="hero-status-card">
+                        <div class="status-badge" id="heroServerStatus">状态检测中</div>
+                        <h3>服务器实时状态</h3>
+                        <ul>
+                            <li><span>服务器地址</span><strong id="serverIp">play.mcdtc.com</strong></li>
+                            <li><span>当前在线</span><strong id="onlinePlayers"><span class="online-dot"></span> --/--</strong></li>
+                            <li><span>推荐游玩版本</span><strong id="serverSimpleVersion">1.21.11</strong></li>
+                            <li><span>服务端信息</span><strong id="serverFullVersion">加载中...</strong></li>
+                            <li><span>延迟</span><strong id="serverPing">--ms</strong></li>
+                            <li><span>最后刷新</span><strong id="lastUpdated">--</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="highlights" class="highlights padding-120 bg-color">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>为什么可以先来看看</h2>
+                <p><i>把新玩家最关心的信息先放到前面</i></p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="highlight-card">
+                        <i class="fa fa-heart"></i>
+                        <h3>老服稳定运营</h3>
+                        <p>从 2014 年持续运营到现在，稳定这件事，多少还是有点说服力的。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="highlight-card">
+                        <i class="fa fa-university"></i>
+                        <h3>建筑与社区氛围</h3>
+                        <p>不只是进服打卡，先看看建筑风格，也能大概知道这里的气质适不适合你。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="highlight-card">
+                        <i class="fa fa-rocket"></i>
+                        <h3>入口更直接</h3>
+                        <p>地址、版本、下载和入口都尽量放在前面，第一次来的玩家不用来回翻。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio padding-120">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>建筑展示</h2>
+                <p><i>挑 6 张先看看我们的风格</i></p>
+            </div>
+            <div class="portfolio_items">
+                <div class="portfolio_item design"><div class="pos_rel"><img src="assets/images/site/optimized-webp/mcdtc-gallery-2.webp" loading="lazy" alt="梦想天域主城一隅" class="img-responsive"><div class="overlay"></div><div class="port_caption"><a href="assets/images/site/optimized-webp/mcdtc-gallery-2.webp" class="image-icon js-gallery-preview" data-full="assets/images/site/optimized-webp/mcdtc-gallery-2.webp" title="主城一隅"><i class="fa fa-search"></i></a></div></div></div>
+                <div class="portfolio_item design"><div class="pos_rel"><img src="assets/images/site/optimized-webp/mcdtc-gallery-1.webp" loading="lazy" alt="梦想天域中世纪街区" class="img-responsive"><div class="overlay"></div><div class="port_caption"><a href="assets/images/site/optimized-webp/mcdtc-gallery-1.webp" class="image-icon js-gallery-preview" data-full="assets/images/site/optimized-webp/mcdtc-gallery-1.webp" title="中世纪街区"><i class="fa fa-search"></i></a></div></div></div>
+                <div class="portfolio_item design"><div class="pos_rel"><img src="assets/images/site/optimized-webp/mcdtc-gallery-4.webp" loading="lazy" alt="梦想天域黄昏灯塔" class="img-responsive"><div class="overlay"></div><div class="port_caption"><a href="assets/images/site/optimized-webp/mcdtc-gallery-4.webp" class="image-icon js-gallery-preview" data-full="assets/images/site/optimized-webp/mcdtc-gallery-4.webp" title="黄昏灯塔"><i class="fa fa-search"></i></a></div></div></div>
+                <div class="portfolio_item design"><div class="pos_rel"><img src="assets/images/site/optimized-webp/mcdtc-gallery-6.webp" loading="lazy" alt="梦想天域城堡群" class="img-responsive"><div class="overlay"></div><div class="port_caption"><a href="assets/images/site/optimized-webp/mcdtc-gallery-6.webp" class="image-icon js-gallery-preview" data-full="assets/images/site/optimized-webp/mcdtc-gallery-6.webp" title="城堡群"><i class="fa fa-search"></i></a></div></div></div>
+                <div class="portfolio_item design"><div class="pos_rel"><img src="assets/images/site/optimized-webp/mcdtc-gallery-3.webp" loading="lazy" alt="梦想天域空岛驻地" class="img-responsive"><div class="overlay"></div><div class="port_caption"><a href="assets/images/site/optimized-webp/mcdtc-gallery-3.webp" class="image-icon js-gallery-preview" data-full="assets/images/site/optimized-webp/mcdtc-gallery-3.webp" title="空岛驻地"><i class="fa fa-search"></i></a></div></div></div>
+                <div class="portfolio_item design"><div class="pos_rel"><img src="assets/images/site/optimized-webp/mcdtc-gallery-5.webp" loading="lazy" alt="梦想天域日式庭院" class="img-responsive"><div class="overlay"></div><div class="port_caption"><a href="assets/images/site/optimized-webp/mcdtc-gallery-5.webp" class="image-icon js-gallery-preview" data-full="assets/images/site/optimized-webp/mcdtc-gallery-5.webp" title="日式庭院"><i class="fa fa-search"></i></a></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq padding-120 bg-color">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>新手必看</h2>
+                <p><i>第一次来，先看这几条就够了</i></p>
+            </div>
+            <div class="row faq-grid">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="faq-item">
+                        <h3>推荐版本是多少？</h3>
+                        <p>推荐游玩版本是 <strong>26.1</strong>。如果你不确定自己该用哪个版本，优先按这个来。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="faq-item">
+                        <h3>需要下载客户端吗？</h3>
+                        <p>建议先下载客户端，省得自己折腾环境。如果已经在群里，也可以直接去群文件拿。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="faq-item">
+                        <h3>服务器地址是什么？</h3>
+                        <p>Java 版服务器地址：<span class="mono">play.mcdtc.com</span>。首页也可以直接一键复制。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="faq-item">
+                        <h3>连不上怎么办？</h3>
+                        <p>先确认版本对不对；如果还是不行，直接进 <strong>Q群 636588613</strong> 问，一般会比自己排查更快。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team padding-120 bg-color">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>核心成员</h2>
+                <p><i>这里是我们管理团队，欢迎来玩也欢迎来撩</i></p>
+            </div>
+            <div class="team-items"><div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=839295616&s=640" loading="lazy" alt="月咕咕 服主头像" class="img-responsive"></div><div class="details"><h3>月咕咕</h3><p>服主</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=2900686225&s=640" loading="lazy" alt="露露 接待头像" class="img-responsive"></div><div class="details"><h3>露露</h3><p>接待</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=994120618&s=640" loading="lazy" alt="茉莉 接待头像" class="img-responsive"></div><div class="details"><h3>茉莉</h3><p>接待</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=1179548989&s=640" loading="lazy" alt="叶酷 建筑师头像" class="img-responsive"></div><div class="details"><h3>叶酷</h3><p>建筑师</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=3250719525&s=640" loading="lazy" alt="程曦 大股东头像" class="img-responsive"></div><div class="details"><h3>程曦</h3><p>大股东</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=635951351&s=640" loading="lazy" alt="Miya 资深玩家头像" class="img-responsive"></div><div class="details"><h3>Miya</h3><p>资深玩家</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=2621479279&s=640" loading="lazy" alt="小叶 玩家头像" class="img-responsive"></div><div class="details"><h3>小叶</h3><p>服务器恶霸</p></div></div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12"><div class="team-item"><div class="image"><img src="https://q1.qlogo.cn/g?b=qq&nk=1329936440&s=640" loading="lazy" alt="白猫 资深玩家头像" class="img-responsive"></div><div class="details"><h3>白猫</h3><p>资深玩家</p></div></div></div>
+            </div></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-us padding-120">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>加入我们</h2>
+                <p><i>把最常用的入口放一起，不跟上面的状态卡片重复</i></p>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-sm-6 col-xs-12">
+                    <div class="join-panel">
+                        <h3>新玩家怎么来</h3>
+                        <div class="join-step"><span>1</span><div><h4>复制服务器地址</h4><p>Java 版服务器地址：<strong class="mono">play.mcdtc.com</strong></p></div></div>
+                        <div class="join-step"><span>2</span><div><h4>下载客户端</h4><p>可以走下载站，也可以直接下压缩包；如果你已经进群，群文件里也有。</p></div></div>
+                        <div class="join-step"><span>3</span><div><h4>连不上就先进群</h4><p>版本、登录方式、客户端问题，先进群问通常会更快解决。</p></div></div>
+                        <div class="download-actions">
+                            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=3gGybqOiF04Gv5Oel4A4HCj8V0hcelZ9&jump_from=webapi" class="default-button qq-button" target="_blank" rel="noopener">加入 Q 群</a>
+                            <button class="default-button" onclick="copyIp()">复制服务器地址</button>
+                            <a href="https://alist.mcdtc.com/" class="default-button" target="_blank" rel="noopener">下载站</a>
+                            <a href="https://alist.mcdtc.com/d/mc/Mc%E6%A2%A6%E6%83%B3%E5%A4%A9%E5%9F%9F%E5%AE%A2%E6%88%B7%E7%AB%AF.zip?sign=8mC4SJ1fzSOgRAn_VdldqFhkYDE-H0wK1ZqfloMGyXk=:0" class="default-button green-button" target="_blank" rel="noopener">直链下载</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-6 col-xs-12">
+                    <div class="contact-info">
+                        <div class="info-item"><div class="icon"><span><i class="fa fa-qq"></i></span></div><div class="content"><p>QQ</p><p>839295616</p></div></div>
+                        <div class="info-item"><div class="icon"><span><i class="fa fa-group"></i></span></div><div class="content"><p>Q群</p><p><a href="https://qm.qq.com/cgi-bin/qm/qr?k=3gGybqOiF04Gv5Oel4A4HCj8V0hcelZ9&jump_from=webapi" target="_blank" rel="noopener">636588613</a></p></div></div>
+                        <div class="info-item"><div class="icon"><span><i class="fa fa-envelope-open-o"></i></span></div><div class="content"><p>邮箱</p><p><a href="mailto:Chino@mcdtc.com">Chino@mcdtc.com</a></p></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="galleryOverlay" class="gallery-overlay" aria-hidden="true">
+        <button class="gallery-overlay-nav gallery-overlay-prev" id="galleryOverlayPrev" aria-label="上一张">‹</button>
+        <button class="gallery-overlay-nav gallery-overlay-next" id="galleryOverlayNext" aria-label="下一张">›</button>
+        <button class="gallery-overlay-close" id="galleryOverlayClose" aria-label="关闭预览">×</button>
+        <img id="galleryOverlayImage" src="" alt="建筑展示大图预览">
+        <div class="gallery-overlay-counter" id="galleryOverlayCounter">1 / 6</div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row footer-row">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <p>© 2018-2026 梦想天域工作室</p>
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"><p>浙ICP备2022015937号-1</p></a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 text-right">
+                    <a class="page-scroll scroll-top" href="#banner" aria-label="回到顶部"><i class="fa fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/server-status.js"></script>
+</body>
+</html>
