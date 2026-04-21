@@ -7,7 +7,16 @@
 	 	$('.loader').fadeOut();
 		$('.preloader').delay(250).fadeOut('slow');
 		$('body').delay(250).css({'overflow':'visible'});
+		$('body').addClass('loaded');
 	 });
+	 
+	 // 安全机制：10秒后强制隐藏预加载器
+	 setTimeout(function() {
+		if ($('.preloader').is(':visible')) {
+			$('.preloader').hide();
+			$('body').css({'overflow':'visible'}).addClass('loaded');
+		}
+	 }, 10000);
 
 	
 	//Fixed menu

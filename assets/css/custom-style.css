@@ -1,3 +1,26 @@
+/* 关键CSS - 首屏内容优化 */
+.hero-grid, .hero-copy, .hero-status-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 确保预加载器在JavaScript失败时也能被隐藏 */
+.preloader {
+    transition: opacity 0.3s ease !important;
+}
+
+/* 当页面加载完成后隐藏预加载器 */
+body.loaded .preloader {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 确保内容在预加载器隐藏后可见 */
+body.loaded {
+    overflow: visible !important;
+}
+
 /* 保证图片不超出，团队头像圆形优雅 */
 .team-item .image img {
     width: 100%;
@@ -5,7 +28,8 @@
     border-radius: 50%;
     border: 4px solid #fff;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
 }
 .team-item:hover .image img {
     transform: scale(1.02);
@@ -576,6 +600,16 @@ footer p {
 
 /* mobile spacing polish */
 @media (max-width: 767px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    body {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-font-smoothing: antialiased;
+    }
+    
     .padding-120 {
         padding: 72px 0;
     }
@@ -623,7 +657,18 @@ footer p {
         min-height: 50px;
         padding-top: 14px;
         padding-bottom: 14px;
+        font-size: 16px;
+        touch-action: manipulation;
     }
+    
+    /* 优化移动端触摸体验 */
+    button, 
+    .default-button,
+    a.default-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
     .team-item {
         margin-bottom: 22px;
     }
@@ -637,6 +682,16 @@ footer p {
     .contact-info .info-item {
         padding: 18px;
         margin-bottom: 16px;
+    }
+    
+    /* 防止移动端缩放 */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="search"],
+    textarea {
+        font-size: 16px;
     }
 }
 

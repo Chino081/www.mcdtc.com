@@ -1,6 +1,17 @@
-$(document).ready(function() {
-    fetchServerStatus();
+// 使用DOMContentLoaded替代jQuery.ready，提高性能
+document.addEventListener('DOMContentLoaded', function() {
+    // 延迟加载状态检查，避免阻塞首屏渲染
+    setTimeout(fetchServerStatus, 100);
+    
+    // 设置定时器，每60秒更新一次状态
     setInterval(fetchServerStatus, 60000);
+    
+    // 添加页面可见性监听，当页面重新可见时更新状态
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            fetchServerStatus();
+        }
+    });
 });
 
 function setText(id, value) {
@@ -81,15 +92,65 @@ function setOfflineStatus() {
 
 function copyIp() {
     const ip = 'play.mcdtc.com';
+    
+    // 检查是否支持现代Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(ip).then(function() {
-            alert('✅ 服务器地址已复制: ' + ip);
-        }).catch(function() {
+            showCopyNotification('✅ 服务器地址已复制: ' + ip);
+        }).catch(function(err) {
+            console.warn('Clipboard API failed:', err);
             fallbackCopy(ip);
         });
     } else {
         fallbackCopy(ip);
     }
+}
+
+function showCopyNotification(message) {
+    // 创建自定义通知而不是使用alert
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+        max-width: 300px;
+        word-break: break-all;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // 3秒后自动移除
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3000);
+}
+
+// 添加CSS动画
+if (!document.querySelector('#copy-notification-styles')) {
+    const style = document.createElement('style');
+    style.id = 'copy-notification-styles';
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
 function fallbackCopy(text) {
