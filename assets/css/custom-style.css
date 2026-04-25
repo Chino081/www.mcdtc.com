@@ -58,6 +58,15 @@ body.loaded {
 }
 .portfolio_item .pos_rel img {
     transition: transform 0.4s;
+    display: block;
+    width: 100%;
+}
+.portfolio_item .pos_rel picture {
+    display: block;
+    width: 100%;
+}
+.portfolio_item .pos_rel picture img {
+    transition: transform 0.4s;
 }
 .portfolio_item .pos_rel:hover img {
     transform: scale(1.05);
@@ -338,6 +347,10 @@ footer p {
     background: rgba(76,175,80,.18);
     color: #7CFF92;
     font-weight: 600;
+}
+.status-badge.is-offline {
+    background: rgba(244,67,54,.18);
+    color: #ff7a7a;
 }
 .hero-status-card h3 {
     margin: 0 0 18px;
@@ -799,42 +812,6 @@ footer p {
     }
 }
 
-/* lightcase 预览图尽量按视口最大化显示，避免还要拖动 */
-#lightcase-case,
-#lightcase-content,
-#lightcase-info {
-    box-sizing: border-box;
-}
-#lightcase-case {
-    max-width: 96vw !important;
-    max-height: 96vh !important;
-}
-#lightcase-content .lightcase-contentInner {
-    width: auto !important;
-    height: auto !important;
-    max-width: 96vw !important;
-    max-height: 96vh !important;
-}
-#lightcase-content img {
-    display: block;
-    width: auto !important;
-    height: auto !important;
-    max-width: 96vw !important;
-    max-height: 90vh !important;
-    margin: 0 auto;
-    object-fit: contain;
-}
-@media (max-width: 767px) {
-    #lightcase-case {
-        max-width: 100vw !important;
-        max-height: 100vh !important;
-    }
-    #lightcase-content img {
-        max-width: 100vw !important;
-        max-height: 86vh !important;
-    }
-}
-
 /* custom fullscreen gallery overlay */
 body.gallery-open {
     overflow: hidden;
@@ -867,6 +844,27 @@ body.gallery-open {
     object-fit: contain;
     box-shadow: 0 24px 60px rgba(0,0,0,.45);
     border-radius: 10px;
+}
+.gallery-overlay-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid rgba(255,255,255,.15);
+    border-top-color: #f5b13b;
+    border-radius: 50%;
+    animation: gallery-spin .7s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity .25s ease;
+}
+.gallery-overlay-spinner.is-hidden {
+    opacity: 0;
+}
+@keyframes gallery-spin {
+    to { transform: rotate(360deg); }
 }
 .gallery-overlay-close {
     position: absolute;
@@ -949,4 +947,27 @@ body.gallery-open {
         font-size: 13px;
         padding: 7px 12px;
     }
+}
+
+.copy-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    animation: copySlideIn 0.3s ease, copyFadeOut 0.3s ease 2.7s;
+    max-width: 300px;
+    word-break: break-all;
+}
+@keyframes copySlideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes copyFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }

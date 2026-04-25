@@ -9,14 +9,14 @@
 		$('body').delay(250).css({'overflow':'visible'});
 		$('body').addClass('loaded');
 	 });
-	 
-	 // 安全机制：10秒后强制隐藏预加载器
-	 setTimeout(function() {
+
+	// 安全兜底：8秒后强制隐藏预加载器（防止某个资源挂起导致页面一直白屏）
+	setTimeout(function() {
 		if ($('.preloader').is(':visible')) {
 			$('.preloader').hide();
 			$('body').css({'overflow':'visible'}).addClass('loaded');
 		}
-	 }, 10000);
+	}, 8000);
 
 	
 	//Fixed menu
@@ -41,6 +41,8 @@
 			scrollTop: $($anchor.attr('href')).offset().top
 		}, 1500, 'easeInOutExpo');
 		event.preventDefault();
+		// 移动端点击后自动收起导航菜单
+		$('.navbar-collapse').collapse('hide');
 	});
 
 
@@ -48,6 +50,7 @@
 	var galleryOverlay = $('#galleryOverlay');
 	var galleryOverlayImage = $('#galleryOverlayImage');
 	var galleryOverlayCounter = $('#galleryOverlayCounter');
+	var galleryOverlaySpinner = $('#galleryOverlaySpinner');
 	var galleryItems = $('.js-gallery-preview');
 	var galleryIndex = -1;
 	var touchStartX = null;
@@ -63,6 +66,8 @@
 		galleryIndex = index;
 		var item = $(galleryItems.get(index));
 		var full = item.attr('data-full') || item.attr('href');
+		galleryOverlayImage.removeClass('is-loaded');
+		galleryOverlaySpinner.removeClass('is-hidden');
 		galleryOverlayImage.attr('src', full);
 		updateGalleryCounter();
 		galleryOverlay.addClass('is-visible').attr('aria-hidden', 'false');
@@ -71,7 +76,8 @@
 
 	function closeGallery() {
 		galleryOverlay.removeClass('is-visible').attr('aria-hidden', 'true');
-		galleryOverlayImage.attr('src', '');
+		galleryOverlayImage.attr('src', '').removeClass('is-loaded');
+		galleryOverlaySpinner.addClass('is-hidden');
 		$('body').removeClass('gallery-open');
 	}
 
@@ -86,6 +92,13 @@
 	galleryItems.on('click', function(event) {
 		event.preventDefault();
 		openGallery(galleryItems.index(this));
+	});
+	galleryOverlayImage.on('load', function() {
+		galleryOverlayImage.addClass('is-loaded');
+		galleryOverlaySpinner.addClass('is-hidden');
+	});
+	galleryOverlayImage.on('error', function() {
+		galleryOverlaySpinner.addClass('is-hidden');
 	});
 	$('#galleryOverlayClose').on('click', function() {
 		closeGallery();

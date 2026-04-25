@@ -62,32 +62,30 @@ function updateServerStatus(data) {
     const onlineHtml = `<span class="online-dot"></span> ${online}/${max}`;
 
     setHtml('onlinePlayers', onlineHtml);
-    setHtml('contactOnlinePlayers', onlineHtml);
     setText('heroOnlinePlayers', `${online}/${max}`);
     setText('serverFullVersion', versionFull);
-    setText('contactFullVersion', versionFull);
     setText('serverSimpleVersion', recommendedVersion);
-    setText('contactVersionTag', recommendedVersion);
     setText('serverPing', pingText);
-    setText('contactServerPing', pingText);
     setText('lastUpdated', nowText());
-    setText('contactLastUpdated', nowText());
-    setText('heroServerStatus', '服务器在线');
+    var badge = document.getElementById('heroServerStatus');
+    if (badge) {
+        badge.textContent = '服务器在线';
+        badge.classList.remove('is-offline');
+    }
 }
 
 function setOfflineStatus() {
     setHtml('onlinePlayers', '<span class="online-dot" style="background:#f44336;"></span> 离线');
-    setHtml('contactOnlinePlayers', '<span class="online-dot" style="background:#f44336;"></span> 离线');
     setText('heroOnlinePlayers', '离线');
     setText('serverFullVersion', '无法获取');
-    setText('contactFullVersion', '无法获取');
     setText('serverSimpleVersion', '离线');
-    setText('contactVersionTag', '离线');
     setText('serverPing', '--ms');
-    setText('contactServerPing', '--ms');
     setText('lastUpdated', nowText());
-    setText('contactLastUpdated', nowText());
-    setText('heroServerStatus', '服务器离线');
+    var badge = document.getElementById('heroServerStatus');
+    if (badge) {
+        badge.textContent = '服务器离线';
+        badge.classList.add('is-offline');
+    }
 }
 
 function copyIp() {
@@ -107,50 +105,15 @@ function copyIp() {
 }
 
 function showCopyNotification(message) {
-    // 创建自定义通知而不是使用alert
     const notification = document.createElement('div');
     notification.className = 'copy-notification';
     notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 10000;
-        animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
-        max-width: 300px;
-        word-break: break-all;
-    `;
-    
     document.body.appendChild(notification);
-    
-    // 3秒后自动移除
-    setTimeout(() => {
+    setTimeout(function() {
         if (notification.parentNode) {
             notification.parentNode.removeChild(notification);
         }
     }, 3000);
-}
-
-// 添加CSS动画
-if (!document.querySelector('#copy-notification-styles')) {
-    const style = document.createElement('style');
-    style.id = 'copy-notification-styles';
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
 }
 
 function fallbackCopy(text) {
