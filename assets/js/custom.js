@@ -1,5 +1,5 @@
 
-  $(document).on('ready', function() {
+  $(function() {
 	'use strict';
 
   	//Pre-loader
@@ -34,12 +34,12 @@
 	});
 
 
-	//jQuery for page scrolling feature - requires jQuery Easing plugin
+	// Smooth page scrolling
 	$('a.page-scroll').on('click', function(event) {
 		var $anchor = $(this);
 		$('html, body').stop().animate({
 			scrollTop: $($anchor.attr('href')).offset().top
-		}, 1500, 'easeInOutExpo');
+		}, 700);
 		event.preventDefault();
 		// 移动端点击后自动收起导航菜单
 		$('.navbar-collapse').collapse('hide');

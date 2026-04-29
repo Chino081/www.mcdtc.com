@@ -22,10 +22,8 @@
     <meta name="theme-color" content="#1b1b2a">
     <link rel="icon" href="/favicon.ico">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.mcstatus.io" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/images/site/optimized-webp/mcdtc-gallery-6.webp" as="image" fetchpriority="high">
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -45,12 +43,7 @@
       "@type": "WebSite",
       "name": "Mc梦想天域",
       "url": "https://www.mcdtc.com/",
-      "description": "长期稳定运营的 Minecraft 服务器官网",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.mcdtc.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "description": "长期稳定运营的 Minecraft 服务器官网"
     }
     </script>
     <script type="application/ld+json">
@@ -126,7 +119,7 @@
                             <li role="listitem"><span>当前在线</span><strong id="onlinePlayers"><span class="online-dot" aria-hidden="true"></span> --/--</strong></li>
                             <li role="listitem"><span>推荐游玩版本</span><strong id="serverSimpleVersion">26.1</strong></li>
                             <li role="listitem"><span>服务端信息</span><strong id="serverFullVersion">加载中...</strong></li>
-                            <li role="listitem"><span>延迟</span><strong id="serverPing">--ms</strong></li>
+                            <li role="listitem"><span>检测说明</span><strong id="serverPing">等待接口</strong></li>
                             <li role="listitem"><span>最后刷新</span><strong id="lastUpdated">--</strong></li>
                         </ul>
                     </div>
@@ -249,13 +242,12 @@
                     <div class="join-panel">
                         <h3>新玩家怎么来</h3>
                         <div class="join-step"><span>1</span><div><h4>复制服务器地址</h4><p>Java 版服务器地址：<strong class="mono">play.mcdtc.com</strong></p></div></div>
-                        <div class="join-step"><span>2</span><div><h4>下载客户端</h4><p>可以走下载站，也可以直接下压缩包；如果你已经进群，群文件里也有。</p></div></div>
+                        <div class="join-step"><span>2</span><div><h4>下载客户端</h4><p>优先走下载站，入口更稳定；如果你已经进群，群文件里也有。</p></div></div>
                         <div class="join-step"><span>3</span><div><h4>连不上就先进群</h4><p>版本、登录方式、客户端问题，先进群问通常会更快解决。</p></div></div>
                         <div class="download-actions">
                             <a href="https://qm.qq.com/cgi-bin/qm/qr?k=3gGybqOiF04Gv5Oel4A4HCj8V0hcelZ9&jump_from=webapi" class="default-button qq-button" target="_blank" rel="noopener">加入 Q 群</a>
                             <button class="default-button" onclick="copyIp()">复制服务器地址</button>
                             <a href="https://alist.mcdtc.com/DreamTamrac/" class="default-button" target="_blank" rel="noopener">下载站</a>
-                            <a href="https://alist.mcdtc.com/d/DreamTamrac/Mc%E6%A2%A6%E6%83%B3%E5%A4%A9%E5%9F%9F.zip?sign=eEt9IXSTmdq59aFMYA9bz9a5JfpekEl-fKFjAUIdnWg=:0" class="default-button green-button" target="_blank" rel="noopener">直链下载</a>
                         </div>
                     </div>
                 </div>
@@ -292,16 +284,10 @@
         </div>
     </footer>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/server-status.js"></script>
-    
-    <!-- 预加载关键资源 -->
-    <link rel="preload" href="assets/images/site/optimized-webp/mcdtc-gallery-6.webp" as="image">
-    <link rel="preload" href="assets/css/style.css" as="style">
-    <link rel="preload" href="assets/js/jquery.min.js" as="script">
+    <script src="assets/js/jquery.min.js" defer></script>
+    <script src="assets/js/bootstrap.min.js" defer></script>
+    <script src="assets/js/custom.js" defer></script>
+    <script src="assets/js/server-status.js" defer></script>
     
     <!-- 安全兜底：确保预加载器最终会被隐藏（防 jQuery 加载失败） -->
     <script>

@@ -31,7 +31,7 @@ function nowText() {
 }
 
 function fetchServerStatus() {
-    const serverAddress = 'play.mcdtc.com';
+    const serverAddress = 's1.mcdtc.com';
     const apiUrl = `https://api.mcstatus.io/v2/status/java/${serverAddress}`;
 
     $.ajax({
@@ -57,15 +57,13 @@ function updateServerStatus(data) {
     const max = data.players && typeof data.players.max === 'number' ? data.players.max : '--';
     const versionFull = (data.version && (data.version.name_clean || data.version.name_raw)) || '未知';
     const recommendedVersion = '26.1';
-    const simulatedPing = Math.floor(Math.random() * 16) + 5;
-    const pingText = `${simulatedPing}ms`;
     const onlineHtml = `<span class="online-dot"></span> ${online}/${max}`;
 
     setHtml('onlinePlayers', onlineHtml);
     setText('heroOnlinePlayers', `${online}/${max}`);
     setText('serverFullVersion', versionFull);
     setText('serverSimpleVersion', recommendedVersion);
-    setText('serverPing', pingText);
+    setText('serverPing', '状态接口正常');
     setText('lastUpdated', nowText());
     var badge = document.getElementById('heroServerStatus');
     if (badge) {
@@ -75,15 +73,15 @@ function updateServerStatus(data) {
 }
 
 function setOfflineStatus() {
-    setHtml('onlinePlayers', '<span class="online-dot" style="background:#f44336;"></span> 离线');
-    setText('heroOnlinePlayers', '离线');
-    setText('serverFullVersion', '无法获取');
-    setText('serverSimpleVersion', '离线');
-    setText('serverPing', '--ms');
+    setHtml('onlinePlayers', '<span class="online-dot" style="background:#f44336;"></span> 暂不可用');
+    setText('heroOnlinePlayers', '暂不可用');
+    setText('serverFullVersion', '状态接口暂不可用');
+    setText('serverSimpleVersion', '26.1');
+    setText('serverPing', '稍后自动重试');
     setText('lastUpdated', nowText());
     var badge = document.getElementById('heroServerStatus');
     if (badge) {
-        badge.textContent = '服务器离线';
+        badge.textContent = '状态暂不可用';
         badge.classList.add('is-offline');
     }
 }
