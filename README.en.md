@@ -23,7 +23,6 @@ www.mcdtc.com/
     │   ├── bootstrap.min.css
     │   ├── custom-style.css
     │   ├── font-awesome.min.css
-    │   ├── lightcase.css
     │   ├── responsive.css
     │   └── style.css
     ├── js/                  # JavaScript files
@@ -31,7 +30,6 @@ www.mcdtc.com/
     │   ├── custom.js
     │   ├── jquery.easing.min.js
     │   ├── jquery.min.js
-    │   ├── lightcase.js
     │   └── server-status.js
     ├── fonts/               # Font files
     ├── images/              # Image resources
@@ -46,7 +44,6 @@ www.mcdtc.com/
 - **jQuery** - DOM manipulation and animations
 - **Bootstrap 3** - Responsive framework
 - **Font Awesome** - Icon library
-- **Lightcase** - Gallery lightbox effect
 
 ## Quick Start
 

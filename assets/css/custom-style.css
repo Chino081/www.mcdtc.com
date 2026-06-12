@@ -1025,3 +1025,427 @@ body.gallery-open {
     from { opacity: 1; }
     to { opacity: 0; }
 }
+
+/* ========== 深色/浅色模式切换 ========== */
+.theme-toggle {
+    cursor: pointer;
+    font-size: 18px;
+}
+.theme-toggle:hover {
+    background: transparent;
+    color: #f5b13b;
+}
+
+/* ========== 深色模式 CSS 变量 ========== */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fc;
+    --bg-card: #ffffff;
+    --text-primary: #1f2430;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: rgba(0,0,0,.08);
+    --shadow-card: 0 18px 40px rgba(24,34,58,.08);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f1220;
+    --bg-secondary: #161b2e;
+    --bg-card: #1c2137;
+    --text-primary: #e8e8f0;
+    --text-secondary: #a8a8b8;
+    --text-muted: #787888;
+    --border-color: rgba(255,255,255,.08);
+    --shadow-card: 0 18px 40px rgba(0,0,0,.3);
+}
+
+[data-theme="dark"] body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .bg-color,
+[data-theme="dark"] .highlights,
+[data-theme="dark"] .faq,
+[data-theme="dark"] .team,
+[data-theme="dark"] .gameplay,
+[data-theme="dark"] .guestbook {
+    background: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .highlight-card,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .gameplay-card,
+[data-theme="dark"] .guestbook-form,
+[data-theme="dark"] .gb-item {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-card);
+}
+
+[data-theme="dark"] .highlight-card h3,
+[data-theme="dark"] .faq-item h3,
+[data-theme="dark"] .gameplay-card h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .highlight-card p,
+[data-theme="dark"] .faq-item p,
+[data-theme="dark"] .gameplay-card p,
+[data-theme="dark"] .gameplay-card li {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .section-header h2 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .section-header p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .main-menu {
+    background: rgba(15,18,32,.95);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .main-menu .navbar-nav li a {
+    color: #ccc !important;
+}
+
+[data-theme="dark"] .site-brand {
+    color: #fff !important;
+}
+
+[data-theme="dark"] .navbar-toggle .icon-bar {
+    background: #ccc;
+}
+
+[data-theme="dark"] .contact-info .info-item {
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .contact-info .info-item p {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-info a {
+    color: #f5b13b !important;
+}
+
+[data-theme="dark"] .contact-info .icon span {
+    background-color: var(--bg-card);
+    color: #f5b13b;
+}
+
+[data-theme="dark"] .team-item .image img {
+    border-color: rgba(255,255,255,.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,.4);
+}
+
+[data-theme="dark"] .team .team-item {
+    background-color: var(--bg-card);
+}
+
+[data-theme="dark"] .team-item .details h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .team-item .details p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .gb-nickname {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .gb-text {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .portfolio {
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] footer {
+    background: #0a0d18;
+}
+
+[data-theme="dark"] .menu-bg {
+    background: rgba(15,18,32,.97) !important;
+}
+
+[data-theme="dark"] .gb-input {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .gb-input::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .map-card {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .map-card h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .map-card p,
+[data-theme="dark"] .map-features span {
+    color: var(--text-secondary);
+}
+
+/* ========== 服务器玩法介绍 ========== */
+.gameplay-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 36px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 40px rgba(24,34,58,.08);
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.gameplay-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(24,34,58,.14);
+}
+.gameplay-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#f5b13b,#ffd67c);
+    color: #1b1b2a;
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+.gameplay-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #1f2430;
+}
+.gameplay-card p {
+    color: #666;
+    line-height: 1.9;
+    margin-bottom: 16px;
+}
+.gameplay-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.gameplay-card li {
+    color: #555;
+    padding: 6px 0;
+    font-size: 14px;
+    border-bottom: 1px dashed rgba(0,0,0,.06);
+}
+.gameplay-card li:last-child {
+    border-bottom: none;
+}
+.gameplay-card li::before {
+    content: "✦";
+    color: #f5b13b;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+/* ========== 在线地图 ========== */
+.map-content {
+    display: flex;
+    justify-content: center;
+}
+.map-card {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2c);
+    border-radius: 28px;
+    padding: 40px 36px;
+    color: #fff;
+    box-shadow: 0 25px 40px -10px rgba(0,0,0,0.45);
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+}
+.map-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    background: linear-gradient(135deg,#f5b13b,#ffd67c);
+    color: #1b1b2a;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.map-card h3 {
+    font-size: 28px;
+    margin-bottom: 14px;
+    color: #fff;
+}
+.map-card p {
+    color: rgba(255,255,255,.78);
+    line-height: 1.9;
+    margin-bottom: 22px;
+    font-size: 16px;
+}
+.map-features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+.map-features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    color: rgba(255,255,255,.88);
+    font-size: 14px;
+}
+.map-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 220px;
+    justify-content: center;
+}
+.map-button i {
+    margin-right: 0;
+}
+
+/* ========== 留言板 ========== */
+.guestbook-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+}
+.guestbook-form {
+    background: #fff;
+    border-radius: 22px;
+    padding: 28px 24px;
+    box-shadow: 0 18px 40px rgba(24,34,58,.08);
+    margin-bottom: 28px;
+}
+.guestbook-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.gb-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid rgba(0,0,0,.08);
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    background: #fff;
+    color: #1f2430;
+}
+.gb-input:focus {
+    outline: none;
+    border-color: #f5b13b;
+}
+.gb-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+.gb-submit {
+    align-self: flex-end;
+    min-width: 160px;
+    justify-content: center;
+}
+.gb-tip {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: #999;
+}
+.guestbook-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.gb-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px 0;
+    font-size: 15px;
+}
+.gb-item {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 12px 28px rgba(24,34,58,.06);
+    position: relative;
+}
+.gb-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.gb-nickname {
+    font-weight: 700;
+    color: #1f2430;
+    font-size: 16px;
+}
+.gb-time {
+    font-size: 13px;
+    color: #999;
+}
+.gb-text {
+    color: #444;
+    line-height: 1.8;
+    word-break: break-all;
+    margin: 0;
+}
+.gb-delete {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+.gb-delete:hover {
+    color: #f44336;
+    background: rgba(244,67,54,.08);
+}
+
+@media (max-width: 767px) {
+    .gameplay-card {
+        padding: 28px 20px;
+    }
+    .map-card {
+        padding: 30px 22px;
+    }
+    .map-card h3 {
+        font-size: 24px;
+    }
+    .guestbook-form {
+        padding: 22px 18px;
+    }
+    .gb-submit {
+        width: 100%;
+    }
+    .gb-item {
+        padding: 16px 18px;
+    }
+    .theme-toggle {
+        padding: 10px;
+    }
+}

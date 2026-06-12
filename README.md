@@ -25,7 +25,6 @@ www.mcdtc.com/
     │   ├── bootstrap.min.css
     │   ├── custom-style.css
     │   ├── font-awesome.min.css
-    │   ├── lightcase.css
     │   ├── responsive.css
     │   └── style.css
     ├── js/                  # JavaScript 文件
@@ -33,7 +32,6 @@ www.mcdtc.com/
     │   ├── custom.js
     │   ├── jquery.easing.min.js
     │   ├── jquery.min.js
-    │   ├── lightcase.js
     │   └── server-status.js
     ├── fonts/               # 字体文件
     ├── images/              # 图片资源
@@ -48,7 +46,6 @@ www.mcdtc.com/
 - **jQuery** - DOM 操作和动画
 - **Bootstrap 3** - 响应式框架
 - **Font Awesome** - 图标库
-- **Lightcase** - 画廊灯箱效果
 
 ## 快速开始
 
