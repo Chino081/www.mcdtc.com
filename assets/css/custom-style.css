@@ -1396,6 +1396,7 @@ body.gallery-open {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    padding-right: 30px;
 }
 .gb-nickname {
     font-weight: 700;
