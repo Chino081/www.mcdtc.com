@@ -3,7 +3,7 @@
 
     // ========== 配置 ==========
     // 修改为你的后端地址，本地开发用 localhost:3000，部署后改为实际域名
-    var API_BASE = window.GUESTBOOK_API || 'http://localhost:3090/api';
+    var API_BASE = window.GUESTBOOK_API || 'http://47.98.215.33:3090/api';
 
     // ========== 工具函数 ==========
     function escapeHtml(str) {
