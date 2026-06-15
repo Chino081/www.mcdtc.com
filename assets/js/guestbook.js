@@ -40,9 +40,11 @@
         .then(function(res) { return res.json(); });
     }
 
-    function deleteMessage(id) {
+    function deleteMessage(id, password) {
         return fetch(API_BASE + '/messages/' + id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: password })
         })
         .then(function(res) { return res.json(); });
     }
@@ -140,18 +142,25 @@
             });
         }
 
-        // 删除留言（事件委托，按 data-id 匹配）
+        // 删除留言（需要管理员密码）
         if (list) {
             list.addEventListener('click', function(e) {
                 var btn = e.target.closest('.gb-delete');
                 if (!btn) return;
                 var id = btn.getAttribute('data-id');
                 if (!id) return;
-                if (!confirm('确定删除这条留言？')) return;
+                var password = prompt('请输入管理员密码：');
+                if (!password) return;
 
-                deleteMessage(id)
-                    .then(function() { loadMessages(); })
-                    .catch(function() { alert('删除失败'); });
+                deleteMessage(id, password)
+                    .then(function(body) {
+                        if (body.code === 0) {
+                            loadMessages();
+                        } else {
+                            alert(body.msg || '删除失败');
+                        }
+                    })
+                    .catch(function() { alert('网络错误'); });
             });
         }
 

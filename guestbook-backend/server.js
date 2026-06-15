@@ -9,6 +9,7 @@ const MAX_ITEMS = 100;
 const MAX_NICKNAME_LEN = 20;
 const MAX_MESSAGE_LEN = 200;
 const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS || '*';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Chino';
 
 // ========== 数据文件 ==========
 const DB_FILE = path.join(__dirname, 'messages.json');
@@ -72,8 +73,13 @@ app.post('/api/messages', (req, res) => {
   res.json({ code: 0, data: entry });
 });
 
-// ---------- 删除留言 ----------
+// ---------- 删除留言（需要管理员密码） ----------
 app.delete('/api/messages/:id', (req, res) => {
+  const { password } = req.body || {};
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(403).json({ code: 2, msg: '密码错误' });
+  }
+
   const id = parseInt(req.params.id, 10);
   if (!id) return res.status(400).json({ code: 1, msg: '无效的 ID' });
 
