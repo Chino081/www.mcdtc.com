@@ -319,7 +319,7 @@
                         <textarea id="gbMessage" class="gb-input gb-textarea" placeholder="想说点什么..." maxlength="200" rows="3" aria-label="留言内容"></textarea>
                         <button id="gbSubmit" class="default-button gb-submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> 发布留言</button>
                     </div>
-                    <p class="gb-tip">留言保存在你的浏览器中，仅自己可见。每人最多保留 50 条。</p>
+                    <p class="gb-tip">所有访客共享留言板，留言将展示给所有人。</p>
                 </div>
                 <div class="guestbook-list" id="guestbookList" role="log" aria-label="留言列表">
                     <div class="gb-empty" id="gbEmpty">还没有留言，来写第一条吧！</div>
@@ -387,6 +387,10 @@
     <script src="assets/js/custom.js" defer></script>
     <script src="assets/js/server-status.js" defer></script>
     <script src="assets/js/theme.js" defer></script>
+    <script>
+        // 留言板后端地址，部署后改为实际域名，例如 'https://api.mcdtc.com/api'
+        window.GUESTBOOK_API = 'http://localhost:3090/api';
+    </script>
     <script src="assets/js/guestbook.js" defer></script>
     
     <!-- 安全兜底：确保预加载器最终会被隐藏（防 jQuery 加载失败） -->
