@@ -59,7 +59,7 @@ app.post('/api/messages', (req, res) => {
     id: nextId++,
     nickname: nickname.substring(0, MAX_NICKNAME_LEN),
     message: message.substring(0, MAX_MESSAGE_LEN),
-    created_at: new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-')
+    created_at: new Date().toLocaleString('sv-SE', { hour12: false })
   };
 
   messages.push(entry);

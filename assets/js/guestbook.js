@@ -13,10 +13,6 @@
     }
 
     function formatTime(dateStr) {
-        // 后端返回 "YYYY-MM-DD HH:MM:SS" 格式，直接截取前16位
-        if (dateStr && dateStr.length >= 16) {
-            return dateStr.substring(0, 16);
-        }
         return dateStr || '';
     }
 
