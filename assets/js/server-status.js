@@ -56,7 +56,7 @@ function updateServerStatus(data) {
     const online = data.players && typeof data.players.online === 'number' ? data.players.online : 0;
     const max = data.players && typeof data.players.max === 'number' ? data.players.max : '--';
     const versionFull = (data.version && (data.version.name_clean || data.version.name_raw)) || '未知';
-    const recommendedVersion = '26.1';
+    const recommendedVersion = '26.2';
     const onlineHtml = `<span class="online-dot"></span> ${online}/${max}`;
 
     setHtml('onlinePlayers', onlineHtml);
@@ -76,7 +76,7 @@ function setOfflineStatus() {
     setHtml('onlinePlayers', '<span class="online-dot" style="background:#f44336;"></span> 暂不可用');
     setText('heroOnlinePlayers', '暂不可用');
     setText('serverFullVersion', '状态接口暂不可用');
-    setText('serverSimpleVersion', '26.1');
+    setText('serverSimpleVersion', '26.2');
     setText('serverPing', '稍后自动重试');
     setText('lastUpdated', nowText());
     var badge = document.getElementById('heroServerStatus');
