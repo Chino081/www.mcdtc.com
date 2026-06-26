@@ -1431,6 +1431,71 @@ body.gallery-open {
     background: rgba(244,67,54,.08);
 }
 
+/* ========== 留言板上下拖动（>5 条启用） ========== */
+.gb-drag-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 14px;
+    font-size: 13px;
+    color: #999;
+    letter-spacing: .3px;
+}
+.gb-drag-hint i {
+    color: #f5b13b;
+}
+.guestbook-list.is-carousel {
+    max-height: 460px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    gap: 14px;
+    padding: 4px 10px 4px 2px;
+    margin: 0 -10px 0 -2px;
+    cursor: grab;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245,177,59,.45) transparent;
+}
+.guestbook-list.is-carousel.gb-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.guestbook-list.is-carousel .gb-item {
+    flex: 0 0 auto;
+    width: 100%;
+    scroll-snap-align: start;
+    margin: 0;
+}
+.guestbook-list.is-carousel .gb-empty {
+    flex: 1 0 auto;
+    text-align: center;
+}
+.guestbook-list.is-carousel::-webkit-scrollbar {
+    width: 8px;
+}
+.guestbook-list.is-carousel::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.04);
+    border-radius: 4px;
+}
+.guestbook-list.is-carousel::-webkit-scrollbar-thumb {
+    background: rgba(245,177,59,.45);
+    border-radius: 4px;
+}
+.guestbook-list.is-carousel::-webkit-scrollbar-thumb:hover {
+    background: rgba(245,177,59,.75);
+}
+[data-theme="dark"] .guestbook-list.is-carousel::-webkit-scrollbar-track {
+    background: rgba(255,255,255,.06);
+}
+[data-theme="dark"] .gb-drag-hint {
+    color: var(--text-muted);
+}
+
 @media (max-width: 767px) {
     .gameplay-card {
         padding: 28px 20px;

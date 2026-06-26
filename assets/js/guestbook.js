@@ -48,21 +48,18 @@
     // ========== 渲染 ==========
     function renderMessages(msgs) {
         var list = document.getElementById('guestbookList');
-        var empty = document.getElementById('gbEmpty');
         if (!list) return;
 
         list.innerHTML = '';
+        list.classList.remove('is-carousel');
 
         if (!msgs || msgs.length === 0) {
-            if (empty) {
-                list.appendChild(empty);
-            } else {
-                var el = document.createElement('div');
-                el.className = 'gb-empty';
-                el.id = 'gbEmpty';
-                el.textContent = '还没有留言，来写第一条吧！';
-                list.appendChild(el);
-            }
+            var el = document.createElement('div');
+            el.className = 'gb-empty';
+            el.id = 'gbEmpty';
+            el.textContent = '还没有留言，来写第一条吧！';
+            list.appendChild(el);
+            hideDragHint();
             return;
         }
 
@@ -78,6 +75,104 @@
                 '</div>' +
                 '<p class="gb-text">' + escapeHtml(m.message) + '</p>';
             list.appendChild(item);
+        }
+
+        // 超过 5 条，启用上下拖动滚动
+        if (msgs.length > 5) {
+            list.classList.add('is-carousel');
+            enableDragScroll(list);
+            showDragHint();
+        } else {
+            hideDragHint();
+        }
+    }
+
+    // ========== 拖动提示 ==========
+    function getDragHint() {
+        var hint = document.getElementById('gbDragHint');
+        if (!hint) {
+            hint = document.createElement('div');
+            hint.id = 'gbDragHint';
+            hint.className = 'gb-drag-hint';
+            hint.innerHTML = '<i class="fa fa-arrows-v" aria-hidden="true"></i> 留言较多，可上下拖动查看';
+            var list = document.getElementById('guestbookList');
+            if (list && list.parentNode) {
+                list.parentNode.insertBefore(hint, list);
+            }
+        }
+        return hint;
+    }
+    function showDragHint() { getDragHint().style.display = ''; }
+    function hideDragHint() {
+        var h = document.getElementById('gbDragHint');
+        if (h) h.style.display = 'none';
+    }
+
+    // ========== 上下拖动滚动（鼠标/笔；触摸交给原生滑动） ==========
+    function enableDragScroll(container) {
+        if (container._gbDragBound) return;
+        container._gbDragBound = true;
+
+        var pointerId = null;
+        var startY = 0, startScroll = 0, lastY = 0, lastTime = 0;
+        var velocity = 0, rafId = 0;
+        var moved = false;
+
+        container.addEventListener('pointerdown', function(e) {
+            if (e.pointerType === 'touch') return;       // 触摸走原生滚动
+            if (e.target.closest('.gb-delete')) return;  // 不拦截删除按钮
+            pointerId = e.pointerId;
+            moved = false;
+            container.classList.add('gb-dragging');
+            startY = e.clientY;
+            startScroll = container.scrollTop;
+            lastY = e.clientY;
+            lastTime = Date.now();
+            velocity = 0;
+            cancelAnimationFrame(rafId);
+            try { container.setPointerCapture(e.pointerId); } catch (_) {}
+        });
+
+        container.addEventListener('pointermove', function(e) {
+            if (e.pointerId !== pointerId) return;
+            var dy = e.clientY - startY;
+            if (Math.abs(dy) > 5) moved = true;
+            container.scrollTop = startScroll - dy;
+            var now = Date.now();
+            var dt = now - lastTime;
+            if (dt > 0) velocity = (lastY - e.clientY) / dt;
+            lastY = e.clientY;
+            lastTime = now;
+        });
+
+        function endDrag(e) {
+            if (e.pointerId !== pointerId) return;
+            pointerId = null;
+            container.classList.remove('gb-dragging');
+            try { container.releasePointerCapture(e.pointerId); } catch (_) {}
+            animateMomentum();
+        }
+        container.addEventListener('pointerup', endDrag);
+        container.addEventListener('pointercancel', endDrag);
+
+        // 拖动产生位移后，拦截随之而来的误触点击
+        container.addEventListener('click', function(e) {
+            if (moved) {
+                e.preventDefault();
+                e.stopPropagation();
+                moved = false;
+            }
+        }, true);
+
+        function animateMomentum() {
+            cancelAnimationFrame(rafId);
+            function step() {
+                if (Math.abs(velocity) < 0.05) return;
+                container.scrollTop += velocity * 16;
+                velocity *= 0.93;
+                rafId = requestAnimationFrame(step);
+            }
+            step();
         }
     }
 
