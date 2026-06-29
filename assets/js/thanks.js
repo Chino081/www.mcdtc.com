@@ -2,14 +2,20 @@
     'use strict';
 
     var DATA_URLS = [
-        'assets/data/sponsors.json',
-        '/assets/data/sponsors.json'
+        'assets/data/thanks.json',
+        '/assets/data/thanks.json'
     ];
-    var FALLBACK_SPONSORS = [
+    var FALLBACK_THANKS = [
         {
             name: '浅若清风',
             description: '感谢支持服务器运营',
             amount: '￥50',
+            badge: '赞助支持'
+        },
+        {
+            name: '我爱大爪车',
+            description: '感谢支持服务器运营',
+            amount: '￥10',
             badge: '赞助支持'
         },
         {
@@ -35,36 +41,36 @@
         return div.innerHTML;
     }
 
-    function renderSponsors(sponsors) {
-        var list = document.getElementById('sponsorList');
+    function renderThanks(items) {
+        var list = document.getElementById('thanksList');
         if (!list) return;
 
         list.innerHTML = '';
 
-        if (!sponsors || sponsors.length === 0) {
+        if (!items || items.length === 0) {
             var empty = document.createElement('li');
-            empty.className = 'sponsor-empty';
-            empty.textContent = '暂时还没有赞助记录。';
+            empty.className = 'thanks-empty';
+            empty.textContent = '暂时还没有记录。';
             list.appendChild(empty);
             list.classList.remove('is-scrollable');
             hideScrollHint();
             return;
         }
 
-        sponsors.forEach(function(sponsor, index) {
+        items.forEach(function(itemData, index) {
             var item = document.createElement('li');
-            var badgeText = sponsor.amount || sponsor.badge || '感谢支持';
+            var badgeText = itemData.amount || itemData.badge || '感谢支持';
             item.innerHTML =
-                '<span class="sponsor-rank">' + (index + 1) + '</span>' +
-                '<div class="sponsor-person">' +
-                    '<h4>' + escapeHtml(sponsor.name) + '</h4>' +
-                    '<p>' + escapeHtml(sponsor.description) + '</p>' +
+                '<span class="thanks-rank">' + (index + 1) + '</span>' +
+                '<div class="thanks-person">' +
+                    '<h4>' + escapeHtml(itemData.name) + '</h4>' +
+                    '<p>' + escapeHtml(itemData.description) + '</p>' +
                 '</div>' +
                 '<strong>' + escapeHtml(badgeText) + '</strong>';
             list.appendChild(item);
         });
 
-        if (sponsors.length > 4) {
+        if (items.length > 4) {
             list.classList.add('is-scrollable');
             enableDragScroll(list);
             showScrollHint();
@@ -75,13 +81,13 @@
     }
 
     function getScrollHint() {
-        var hint = document.getElementById('sponsorScrollHint');
+        var hint = document.getElementById('thanksScrollHint');
         if (!hint) {
             hint = document.createElement('div');
-            hint.id = 'sponsorScrollHint';
-            hint.className = 'sponsor-scroll-hint';
-            hint.innerHTML = '<i class="fa fa-arrows-v" aria-hidden="true"></i> 赞助名单较多，可上下滑动查看';
-            var list = document.getElementById('sponsorList');
+            hint.id = 'thanksScrollHint';
+            hint.className = 'thanks-scroll-hint';
+            hint.innerHTML = '<i class="fa fa-arrows-v" aria-hidden="true"></i> 名单较多，可上下滑动查看';
+            var list = document.getElementById('thanksList');
             if (list && list.parentNode) {
                 list.parentNode.insertBefore(hint, list);
             }
@@ -92,13 +98,13 @@
     function showScrollHint() { getScrollHint().style.display = ''; }
 
     function hideScrollHint() {
-        var hint = document.getElementById('sponsorScrollHint');
+        var hint = document.getElementById('thanksScrollHint');
         if (hint) hint.style.display = 'none';
     }
 
     function enableDragScroll(container) {
-        if (container._sponsorDragBound) return;
-        container._sponsorDragBound = true;
+        if (container._thanksDragBound) return;
+        container._thanksDragBound = true;
 
         var pointerId = null;
         var startY = 0;
@@ -165,25 +171,25 @@
         }
     }
 
-    function loadSponsors() {
+    function loadThanks() {
         if (!window.fetch) {
-            renderSponsors(FALLBACK_SPONSORS);
+            renderThanks(FALLBACK_THANKS);
             return;
         }
 
-        fetchSponsors(0)
-            .then(function(data) { renderSponsors(data); })
+        fetchThanks(0)
+            .then(function(data) { renderThanks(data); })
             .catch(function(error) {
                 if (window.console && console.warn) {
-                    console.warn('赞助名单 JSON 读取失败，已使用内置兜底数据。', error);
+                    console.warn('鸣谢名单 JSON 读取失败，已使用内置兜底数据。', error);
                 }
-                renderSponsors(FALLBACK_SPONSORS);
+                renderThanks(FALLBACK_THANKS);
             });
     }
 
-    function fetchSponsors(index) {
+    function fetchThanks(index) {
         if (index >= DATA_URLS.length) {
-            return Promise.reject(new Error('Failed to load sponsor data'));
+            return Promise.reject(new Error('Failed to load thanks data'));
         }
 
         return fetch(DATA_URLS[index], { cache: 'no-cache' })
@@ -192,17 +198,17 @@
                 return res.json();
             })
             .then(function(data) {
-                if (!Array.isArray(data)) throw new Error('Sponsor data is not an array');
+                if (!Array.isArray(data)) throw new Error('Thanks data is not an array');
                 return data;
             })
             .catch(function() {
-                return fetchSponsors(index + 1);
+                return fetchThanks(index + 1);
             });
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadSponsors);
+        document.addEventListener('DOMContentLoaded', loadThanks);
     } else {
-        loadSponsors();
+        loadThanks();
     }
 })();

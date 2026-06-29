@@ -1073,7 +1073,7 @@ body.gallery-open {
 [data-theme="dark"] .faq,
 [data-theme="dark"] .team,
 [data-theme="dark"] .gameplay,
-[data-theme="dark"] .sponsor,
+[data-theme="dark"] .thanks,
 [data-theme="dark"] .guestbook {
     background: var(--bg-secondary) !important;
 }
@@ -1081,8 +1081,8 @@ body.gallery-open {
 [data-theme="dark"] .highlight-card,
 [data-theme="dark"] .faq-item,
 [data-theme="dark"] .gameplay-card,
-[data-theme="dark"] .sponsor-board,
-[data-theme="dark"] .sponsor-note,
+[data-theme="dark"] .thanks-board,
+[data-theme="dark"] .thanks-note,
 [data-theme="dark"] .guestbook-form,
 [data-theme="dark"] .gb-item {
     background: var(--bg-card);
@@ -1093,9 +1093,9 @@ body.gallery-open {
 [data-theme="dark"] .highlight-card h3,
 [data-theme="dark"] .faq-item h3,
 [data-theme="dark"] .gameplay-card h3,
-[data-theme="dark"] .sponsor-board h3,
-[data-theme="dark"] .sponsor-note h3,
-[data-theme="dark"] .sponsor-person h4 {
+[data-theme="dark"] .thanks-board h3,
+[data-theme="dark"] .thanks-note h3,
+[data-theme="dark"] .thanks-person h4 {
     color: var(--text-primary);
 }
 
@@ -1103,20 +1103,20 @@ body.gallery-open {
 [data-theme="dark"] .faq-item p,
 [data-theme="dark"] .gameplay-card p,
 [data-theme="dark"] .gameplay-card li,
-[data-theme="dark"] .sponsor-note p,
-[data-theme="dark"] .sponsor-person p {
+[data-theme="dark"] .thanks-note p,
+[data-theme="dark"] .thanks-person p {
     color: var(--text-secondary);
 }
 
-[data-theme="dark"] .sponsor-list li {
+[data-theme="dark"] .thanks-list li {
     border-color: var(--border-color);
 }
 
-[data-theme="dark"] .sponsor-list.is-scrollable::-webkit-scrollbar-track {
+[data-theme="dark"] .thanks-list.is-scrollable::-webkit-scrollbar-track {
     background: rgba(255,255,255,.06);
 }
 
-[data-theme="dark"] .sponsor-scroll-hint {
+[data-theme="dark"] .thanks-scroll-hint {
     color: var(--text-muted);
 }
 
@@ -1347,29 +1347,29 @@ body.gallery-open {
 }
 
 /* ========== 赞助答谢榜 ========== */
-.sponsor-wrap {
+.thanks-wrap {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
     gap: 28px;
     align-items: stretch;
 }
-.sponsor-board,
-.sponsor-note {
+.thanks-board,
+.thanks-note {
     background: #fff;
     border-radius: 22px;
     box-shadow: 0 18px 40px rgba(24,34,58,.08);
 }
-.sponsor-board {
+.thanks-board {
     padding: 30px 28px;
 }
-.sponsor-board-head {
+.thanks-board-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 18px;
     margin-bottom: 20px;
 }
-.sponsor-kicker {
+.thanks-kicker {
     display: inline-block;
     margin-bottom: 8px;
     color: #f5b13b;
@@ -1378,13 +1378,13 @@ body.gallery-open {
     text-transform: uppercase;
     font-size: 12px;
 }
-.sponsor-board-head h3,
-.sponsor-note h3 {
+.thanks-board-head h3,
+.thanks-note h3 {
     margin: 0;
     color: #1f2430;
     font-size: 28px;
 }
-.sponsor-board-head > i {
+.thanks-board-head > i {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1396,12 +1396,12 @@ body.gallery-open {
     color: #1b1b2a;
     font-size: 22px;
 }
-.sponsor-list {
+.thanks-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.sponsor-list.is-scrollable {
+.thanks-list.is-scrollable {
     max-height: 348px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1413,26 +1413,26 @@ body.gallery-open {
     scrollbar-width: thin;
     scrollbar-color: rgba(245,177,59,.45) transparent;
 }
-.sponsor-list.is-scrollable.is-dragging {
+.thanks-list.is-scrollable.is-dragging {
     cursor: grabbing;
     user-select: none;
     -webkit-user-select: none;
 }
-.sponsor-list.is-scrollable::-webkit-scrollbar {
+.thanks-list.is-scrollable::-webkit-scrollbar {
     width: 8px;
 }
-.sponsor-list.is-scrollable::-webkit-scrollbar-track {
+.thanks-list.is-scrollable::-webkit-scrollbar-track {
     background: rgba(0,0,0,.04);
     border-radius: 4px;
 }
-.sponsor-list.is-scrollable::-webkit-scrollbar-thumb {
+.thanks-list.is-scrollable::-webkit-scrollbar-thumb {
     background: rgba(245,177,59,.45);
     border-radius: 4px;
 }
-.sponsor-list.is-scrollable::-webkit-scrollbar-thumb:hover {
+.thanks-list.is-scrollable::-webkit-scrollbar-thumb:hover {
     background: rgba(245,177,59,.75);
 }
-.sponsor-list li {
+.thanks-list li {
     display: grid;
     grid-template-columns: 48px minmax(0, 1fr) auto;
     gap: 16px;
@@ -1440,7 +1440,7 @@ body.gallery-open {
     padding: 18px 0;
     border-top: 1px dashed rgba(0,0,0,.08);
 }
-.sponsor-rank {
+.thanks-rank {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1452,18 +1452,18 @@ body.gallery-open {
     font-weight: 800;
     font-size: 18px;
 }
-.sponsor-person h4 {
+.thanks-person h4 {
     margin: 0 0 6px;
     color: #1f2430;
     font-size: 20px;
     font-weight: 700;
 }
-.sponsor-person p {
+.thanks-person p {
     margin: 0;
     color: #666;
     line-height: 1.7;
 }
-.sponsor-list strong {
+.thanks-list strong {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1474,14 +1474,14 @@ body.gallery-open {
     color: #b7750d;
     font-size: 13px;
 }
-.sponsor-empty {
+.thanks-empty {
     display: block !important;
     color: #999;
     text-align: center;
     padding: 34px 0 !important;
     border-top: 1px dashed rgba(0,0,0,.08);
 }
-.sponsor-scroll-hint {
+.thanks-scroll-hint {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1490,16 +1490,16 @@ body.gallery-open {
     color: #999;
     font-size: 13px;
 }
-.sponsor-scroll-hint i {
+.thanks-scroll-hint i {
     color: #f5b13b;
 }
-.sponsor-note {
+.thanks-note {
     padding: 32px 26px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.sponsor-note-icon {
+.thanks-note-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1511,16 +1511,16 @@ body.gallery-open {
     font-size: 24px;
     margin-bottom: 18px;
 }
-.sponsor-note p {
+.thanks-note p {
     color: #666;
     line-height: 1.9;
     margin-bottom: 14px;
 }
-.sponsor-button {
+.thanks-button {
     align-self: flex-start;
     margin-top: 8px;
 }
-.sponsor-button i {
+.thanks-button i {
     margin-right: 6px;
 }
 
@@ -1698,26 +1698,26 @@ body.gallery-open {
     .gameplay-card {
         padding: 28px 20px;
     }
-    .sponsor-wrap {
+    .thanks-wrap {
         grid-template-columns: 1fr;
     }
-    .sponsor-board,
-    .sponsor-note {
+    .thanks-board,
+    .thanks-note {
         padding: 24px 18px;
     }
-    .sponsor-list li {
+    .thanks-list li {
         grid-template-columns: 42px minmax(0, 1fr);
         gap: 12px;
     }
-    .sponsor-list strong {
+    .thanks-list strong {
         grid-column: 2;
         justify-self: flex-start;
     }
-    .sponsor-board-head h3,
-    .sponsor-note h3 {
+    .thanks-board-head h3,
+    .thanks-note h3 {
         font-size: 24px;
     }
-    .sponsor-button {
+    .thanks-button {
         width: 100%;
         text-align: center;
     }
