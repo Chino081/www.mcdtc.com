@@ -1073,6 +1073,7 @@ body.gallery-open {
 [data-theme="dark"] .faq,
 [data-theme="dark"] .team,
 [data-theme="dark"] .gameplay,
+[data-theme="dark"] .sponsor,
 [data-theme="dark"] .guestbook {
     background: var(--bg-secondary) !important;
 }
@@ -1080,6 +1081,8 @@ body.gallery-open {
 [data-theme="dark"] .highlight-card,
 [data-theme="dark"] .faq-item,
 [data-theme="dark"] .gameplay-card,
+[data-theme="dark"] .sponsor-board,
+[data-theme="dark"] .sponsor-note,
 [data-theme="dark"] .guestbook-form,
 [data-theme="dark"] .gb-item {
     background: var(--bg-card);
@@ -1089,15 +1092,24 @@ body.gallery-open {
 
 [data-theme="dark"] .highlight-card h3,
 [data-theme="dark"] .faq-item h3,
-[data-theme="dark"] .gameplay-card h3 {
+[data-theme="dark"] .gameplay-card h3,
+[data-theme="dark"] .sponsor-board h3,
+[data-theme="dark"] .sponsor-note h3,
+[data-theme="dark"] .sponsor-person h4 {
     color: var(--text-primary);
 }
 
 [data-theme="dark"] .highlight-card p,
 [data-theme="dark"] .faq-item p,
 [data-theme="dark"] .gameplay-card p,
-[data-theme="dark"] .gameplay-card li {
+[data-theme="dark"] .gameplay-card li,
+[data-theme="dark"] .sponsor-note p,
+[data-theme="dark"] .sponsor-person p {
     color: var(--text-secondary);
+}
+
+[data-theme="dark"] .sponsor-list li {
+    border-color: var(--border-color);
 }
 
 [data-theme="dark"] .section-header h2 {
@@ -1326,6 +1338,141 @@ body.gallery-open {
     margin-right: 0;
 }
 
+/* ========== 赞助答谢榜 ========== */
+.sponsor-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    gap: 28px;
+    align-items: stretch;
+}
+.sponsor-board,
+.sponsor-note {
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 18px 40px rgba(24,34,58,.08);
+}
+.sponsor-board {
+    padding: 30px 28px;
+}
+.sponsor-board-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+.sponsor-kicker {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #f5b13b;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.sponsor-board-head h3,
+.sponsor-note h3 {
+    margin: 0;
+    color: #1f2430;
+    font-size: 28px;
+}
+.sponsor-board-head > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#f5b13b,#ffd67c);
+    color: #1b1b2a;
+    font-size: 22px;
+}
+.sponsor-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sponsor-list li {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 18px 0;
+    border-top: 1px dashed rgba(0,0,0,.08);
+}
+.sponsor-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(245,177,59,.14);
+    color: #c98213;
+    font-weight: 800;
+    font-size: 18px;
+}
+.sponsor-person h4 {
+    margin: 0 0 6px;
+    color: #1f2430;
+    font-size: 20px;
+    font-weight: 700;
+}
+.sponsor-person p {
+    margin: 0;
+    color: #666;
+    line-height: 1.7;
+}
+.sponsor-list strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(245,177,59,.14);
+    color: #b7750d;
+    font-size: 13px;
+}
+.sponsor-empty {
+    display: block !important;
+    color: #999;
+    text-align: center;
+    padding: 34px 0 !important;
+    border-top: 1px dashed rgba(0,0,0,.08);
+}
+.sponsor-note {
+    padding: 32px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.sponsor-note-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#f5b13b,#ffd67c);
+    color: #1b1b2a;
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+.sponsor-note p {
+    color: #666;
+    line-height: 1.9;
+    margin-bottom: 14px;
+}
+.sponsor-button {
+    align-self: flex-start;
+    margin-top: 8px;
+}
+.sponsor-button i {
+    margin-right: 6px;
+}
+
 /* ========== 留言板 ========== */
 .guestbook-wrap {
     max-width: 720px;
@@ -1499,6 +1646,29 @@ body.gallery-open {
 @media (max-width: 767px) {
     .gameplay-card {
         padding: 28px 20px;
+    }
+    .sponsor-wrap {
+        grid-template-columns: 1fr;
+    }
+    .sponsor-board,
+    .sponsor-note {
+        padding: 24px 18px;
+    }
+    .sponsor-list li {
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 12px;
+    }
+    .sponsor-list strong {
+        grid-column: 2;
+        justify-self: flex-start;
+    }
+    .sponsor-board-head h3,
+    .sponsor-note h3 {
+        font-size: 24px;
+    }
+    .sponsor-button {
+        width: 100%;
+        text-align: center;
     }
     .map-card {
         padding: 30px 22px;
