@@ -5,25 +5,21 @@
     "amount": "￥50",
     "badge": "赞助支持"
   },
-    {
+  {
     "name": "我爱大爪车",
     "description": "感谢支持服务器运营",
     "amount": "￥10",
     "badge": "赞助支持"
   },
   {
+    "name": "Eeeaaaooo",
+    "description": "感谢支持服务器运营",
+    "amount": "￥9.9",
+    "badge": "赞助支持"
+  },
+  {
     "name": "程曦",
     "description": "大股东 · 长期支持服务器运营",
     "badge": "特别鸣谢"
-  },
-  {
-    "name": "热心玩家们",
-    "description": "维护费用、活动奖品与社区建设支持",
-    "badge": "持续更新"
-  },
-  {
-    "name": "匿名赞助者",
-    "description": "默默支持服务器的朋友们",
-    "badge": "感谢有你"
   }
 ]
