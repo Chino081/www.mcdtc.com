@@ -17,10 +17,16 @@
     "amount": "￥9.9",
     "badge": "赞助支持"
   },
-    {
+  {
     "name": "红石",
     "description": "感谢支持服务器运营",
     "amount": "￥6.6",
+    "badge": "赞助支持"
+  },
+  {
+    "name": "是云不是风",
+    "description": "感谢支持服务器运营",
+    "amount": "￥10.51",
     "badge": "赞助支持"
   },
   {
